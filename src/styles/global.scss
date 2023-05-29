@@ -1,3 +1,6 @@
+@use './utils/variables' as *;
+@use './utils/mixin' as *;
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -16,8 +19,282 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1;
+  background-color: $background-color;
+  color: $text-color
 }
 
 h1, h2, h3, h4, h5 {
   font-weight: 400;
+}
+
+a {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  width: 100%;
+
+  @include desktop {
+    padding: 40rem 80rem;
+  }
+}
+
+.header {
+  width: 100%;
+
+  @include desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.header__title {
+  @include desktop {
+    font-size: 49rem;
+    transform: translateX(-4rem);
+  }
+}
+
+.header__link {
+  @include desktop {
+    transform: translateX(4rem);
+  }
+}
+
+.header__link-icon {
+  @include desktop {
+    width: 40rem;
+    height: 40rem;
+  }
+}
+
+.container {
+  @include desktop {
+    width: 100%;
+    margin-top: 80rem;
+    display: flex;
+  }
+}
+
+.canvas-wrapper {
+  @include desktop {
+    display: flex;
+  }
+}
+
+.graph-canvas {
+  @include desktop {
+    width: 720rem;
+    height: 720rem;
+    background-color: $canvas-color;
+  }
+}
+
+.animation-canvas {
+  @include desktop {
+    width: 240rem;
+    height: 720rem;
+    margin-left: 36rem;
+    background-color: $canvas-color;
+  }
+}
+
+.interface-wrapper {
+  @include desktop {
+    margin-left: 64rem;
+  }
+}
+
+.controller-wrapper {
+  @include desktop {
+    display: flex;
+  }
+}
+
+.animation {
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 368rem;
+    height: 160rem;
+    padding: 16rem;
+    background-color: $animation-panel-color;
+    border: 1px solid $border-color;
+  }
+}
+
+.duration__label {
+  @include desktop {
+    font-size: 25rem;
+  }
+}
+
+.duration__input {
+  @include desktop {
+    padding: 4rem 8rem;
+    font-size: 20rem;
+    text-align: center;
+    background-color: $interface-color;
+    border: 1px solid $border-color;
+    margin-left: 8rem;
+  }
+}
+
+.duration__range {
+  @include desktop {
+    display: block;
+    margin-top: 10rem;
+    width: 100%;
+    height: 20rem;
+  }
+}
+
+.animation__button {
+  @include desktop {
+    font-size: 25rem;
+    width: 100%;
+    padding: 8rem 0;
+    background-color: $interface-color;
+    color: $text-color;
+    border: 1px solid $border-color;
+  }
+}
+
+.copy {
+  @include desktop {
+    position: relative;
+    width: 316rem;
+    height: 160rem;
+    margin-left: 16rem;
+    padding: 20rem;
+    background-color: $copy-color;
+    border: 1px solid $border-color;
+  }
+}
+
+.copy__text {
+  @include desktop {
+    font-size: 16rem;
+    line-height: 1.2;
+  }
+}
+
+.copy__button {
+  @include desktop {
+    position: absolute;
+    top: 16rem;
+    right: 16rem;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.copy__icon {
+  @include desktop {
+    width: 24rem;
+    height: 24rem;
+  }
+}
+
+.function {
+  @include desktop {
+    margin-top: 40rem;
+    width: 100%;
+  }
+}
+
+.function__label {
+  @include desktop {
+    font-size: 25rem;
+  }
+}
+
+.function-input-wrapper {
+  @include desktop {
+    position: relative;
+    width: 100%;
+    margin-top: 10rem;
+  }
+}
+
+.function__input {
+  @include desktop {
+    width: 100%;
+    padding: 12rem 8rem;
+    font-size: 25rem;
+    background-color: $input-color;
+    border: 1px solid $border-color;
+  }
+}
+
+.function__clear-button {
+  @include desktop {
+    position: absolute;
+    top: 50%;
+    right: 10rem;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.function__clear-icon {
+  @include desktop {
+    width: 32rem;
+    height: 32rem;
+  }
+}
+
+.function-button-wrapper {
+  @include desktop {
+    display: flex;
+    margin-top: 30rem;
+  }
+}
+
+.operator-button-wrapper {
+  @include desktop {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10rem 12rem;
+  }
+}
+
+.operator-button {
+  @include desktop {
+    width: 84rem;
+    height: 52rem;
+    font-size: 25rem;
+    background-color: $interface-color;
+    border: 1px solid $border-color;
+    color: $text-color;
+  }
+}
+
+.easing-button-wrapper {
+  @include desktop {
+    margin-left: 40rem;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10rem 12rem;
+  }
+}
+
+.easing-button {
+  @include desktop {
+    width: 152rem;
+    height: 52rem;
+    background-color: $interface-color;
+    border: 1px solid $border-color;
+    font-size: 20rem;
+    color: $text-color;
+  }
 }
