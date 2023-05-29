@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ease ease</title>
+    <meta name="description" content="ease ease is a easing visualizer.">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="google" content="nositelinkssearchbox">
+    <link rel="stylesheet" href="src/styles/global.scss">
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <h1 class="header__title">ease ease</h1>
+        <a href="" class="header__link">
+          <svg width="40" height="40" viewBox="0 0 40 40" class="header__link-icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 3.33333C17.8113 3.33333 15.6441 3.76443 13.622 4.60201C11.5999 5.43958 9.76257 6.66724 8.21493 8.21488C5.08932 11.3405 3.33337 15.5797 3.33337 20C3.33337 27.3667 8.11671 33.6167 14.7334 35.8333C15.5667 35.9667 15.8334 35.45 15.8334 35V32.1833C11.2167 33.1833 10.2334 29.95 10.2334 29.95C9.46671 28.0167 8.38337 27.5 8.38337 27.5C6.86671 26.4667 8.50004 26.5 8.50004 26.5C10.1667 26.6167 11.05 28.2167 11.05 28.2167C12.5 30.75 14.95 30 15.9 29.6C16.05 28.5167 16.4834 27.7833 16.95 27.3667C13.25 26.95 9.36671 25.5167 9.36671 19.1667C9.36671 17.3167 10 15.8333 11.0834 14.65C10.9167 14.2333 10.3334 12.5 11.25 10.25C11.25 10.25 12.65 9.8 15.8334 11.95C17.15 11.5833 18.5834 11.4 20 11.4C21.4167 11.4 22.85 11.5833 24.1667 11.95C27.35 9.8 28.75 10.25 28.75 10.25C29.6667 12.5 29.0834 14.2333 28.9167 14.65C30 15.8333 30.6334 17.3167 30.6334 19.1667C30.6334 25.5333 26.7334 26.9333 23.0167 27.35C23.6167 27.8667 24.1667 28.8833 24.1667 30.4333V35C24.1667 35.45 24.4334 35.9833 25.2834 35.8333C31.9 33.6 36.6667 27.3667 36.6667 20C36.6667 17.8113 36.2356 15.644 35.398 13.6219C34.5605 11.5998 33.3328 9.76253 31.7852 8.21488C30.2375 6.66724 28.4002 5.43958 26.3781 4.60201C24.356 3.76443 22.1887 3.33333 20 3.33333Z" fill="black"/>
+          </svg>            
+        </a>
+      </header>
+      <div class="container">
+        <div class="canvas-wrapper">
+          <canvas class="graph-canvas"></canvas>
+          <canvas class="animation-canvas"></canvas>
+        </div>
+        <div class="interface-wrapper">
+          <div class="controller-wrapper">
+            <div class="animation">
+              <div class="duration">
+                <label for="duration-range" class="duration__label"></label>
+                <input
+                  type="text"
+                  class="duration__input"
+                  size="4"
+                  placeholder="2.0"
+                >
+                <input
+                  type="range"
+                  name="duration-range"
+                  class="duration__range"
+                  id="duration-range"
+                  min="0.1"
+                  max="10"
+                  step="0.01"
+                  value="2.0"
+                >
+              </div>
+              <button class="animation__button">run</button>
+            </div>
+            <div class="copy-field">
+              <p class="copy-field__text"></p>
+              <button class="copy-field__button">
+                <svg width="24" height="24" viewBox="0 0 24 24" class="copy-field__icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.25 3.1875H8.25C8.10082 3.1875 7.95774 3.24676 7.85225 3.35225C7.74676 3.45774 7.6875 3.60082 7.6875 3.75V7.6875H3.75C3.60082 7.6875 3.45774 7.74676 3.35225 7.85225C3.24676 7.95774 3.1875 8.10082 3.1875 8.25V20.25C3.1875 20.3992 3.24676 20.5423 3.35225 20.6477C3.45774 20.7532 3.60082 20.8125 3.75 20.8125H15.75C15.8992 20.8125 16.0423 20.7532 16.1477 20.6477C16.2532 20.5423 16.3125 20.3992 16.3125 20.25V16.3125H20.25C20.3992 16.3125 20.5423 16.2532 20.6477 16.1477C20.7532 16.0423 20.8125 15.8992 20.8125 15.75V3.75C20.8125 3.60082 20.7532 3.45774 20.6477 3.35225C20.5423 3.24676 20.3992 3.1875 20.25 3.1875ZM15.1875 19.6875H4.3125V8.8125H15.1875V19.6875ZM19.6875 15.1875H16.3125V8.25C16.3125 8.10082 16.2532 7.95774 16.1477 7.85225C16.0423 7.74676 15.8992 7.6875 15.75 7.6875H8.8125V4.3125H19.6875V15.1875Z" fill="black"/>
+                </svg>                
+              </button>
+            </div>
+          </div>
+          <div class="function">
+            <label for="function-input" class="function__label">f(t):</label>
+            <div class="function-input-wrapper">
+              <input
+                type="text"
+                name="function-input"
+                id="function-input"
+                class="function__input"
+                value=""
+                placeholder="quadOut(t)"
+              >
+              <button class="function__clear-button">
+                <svg width="30" height="30" viewBox="0 0 30 30" class="function__clear-icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.1429 22.1429L7.85718 7.85715M22.1429 7.85715L7.85718 22.1429" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+              </button>
+            </div>
+            <div class="function-button-wrapper">
+              <div class="operator-button-wrapper">
+                <button class="operator-button">+</button>
+                <button class="operator-button">-</button>
+                <button class="operator-button">*</button>
+                <button class="operator-button">/</button>
+                <button class="operator-button">%</button>
+              </div>
+              <div class="function-button-wrapper">
+                <button class="function-button">quadIn(t)</button>
+                <button class="function-button">quadOut(t)</button>
+                <button class="function-button">quadInOut(t)</button>
+                <button class="function-button">cubicIn(t)</button>
+                <button class="function-button">cubicOut(t)</button>
+                <button class="function-button">cubicInOut(t)</button>
+                <button class="function-button">quartIn(t)</button>
+                <button class="function-button">quartOut(t)</button>
+                <button class="function-button">quartInOut(t)</button>
+                <button class="function-button">quintIn(t)</button>
+                <button class="function-button">quintOut(t)</button>
+                <button class="function-button">quintInOut(t)</button>
+                <button class="function-button">sineIn(t)</button>
+                <button class="function-button">sineOut(t)</button>
+                <button class="function-button">sineInOut(t)</button>
+                <button class="function-button">expoIn(t)</button>
+                <button class="function-button">expoOut(t)</button>
+                <button class="function-button">expoInOut(t)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="src/scripts/main.js"></script>
+  </body>
+</html>
