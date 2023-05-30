@@ -1,6 +1,11 @@
 export class Tween {
-  constructor({ duration, ease }) {
+  constructor({
+    duration = 1,
+    delay = 0,
+    ease = t => t
+  }) {
     this.duration = duration;
+    this.delay = delay;
     this.ease = ease;
     this.progress = 0;
     this.time = {
@@ -11,18 +16,24 @@ export class Tween {
   }
   
   to({
-    duration = 1,
+    duration = this.duration,
+    delay = this.delay,
     ease = this.ease
   } = {}) {
     this.duration = duration;
+    this.delay = delay;
     this.ease = ease;
 
     this.progress = 0;
 
     this.time.now = 0;
     this.time.last = 0;
-    
-    this.isRunning = true;
+
+    this.isRunning = false;
+
+    setTimeout(() => {
+      this.isRunning = true;
+    }, this.delay * 1000);
   }
 
   raf = (timestamp) => {
