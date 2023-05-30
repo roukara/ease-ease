@@ -81,7 +81,7 @@ button {
   }
 }
 
-.canvas-wrapper {
+.canvas-container {
   @include desktop {
     display: flex;
   }
@@ -104,7 +104,7 @@ button {
   }
 }
 
-.interface-wrapper {
+.interface-container {
   @include desktop {
     margin-left: 64rem;
   }
