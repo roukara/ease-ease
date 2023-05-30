@@ -66,7 +66,7 @@ export class GraphCanvas {
       ctx.textAlign = 'right';
       ctx.fillText(Math.round(tween.ease(i) * 100) * 0.01, -10, y);
 
-      ctx.strokeStyle = '#ccc';
+      ctx.strokeStyle = '#666';
       strokeLine(ctx, 0, y, x, y);
       strokeLine(ctx, x, y, x, graphSize);
     }
@@ -84,9 +84,7 @@ export class GraphCanvas {
     ctx.restore();
   }
 
-  resize = () => {
-    const dpr = Math.min(window.devicePixelRatio, 2);
-
+  resize = (dpr) => {
     this.el.width = this.el.clientWidth * dpr;
     this.el.height = this.el.clientHeight * dpr;
     this.size = Math.min(this.el.width, this.el.height);
