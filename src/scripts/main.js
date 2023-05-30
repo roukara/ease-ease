@@ -1,80 +1,126 @@
-window.linear = (t) => {
-  return t;
+import { Dom } from "./utils/Dom";
+import { MathUtils } from "./utils/MathUtils";
+import { Tween } from "./utils/Tween";
+import { evaluateFunction } from "./helpers/evaluateFunction";
+import { setEasingFunctions } from "./helpers/setEasingFunctions";
+import { GraphCanvas } from "./canvas/GraphCanvas";
+
+function main() {
+  setEasingFunctions();
+  
+  const state = {
+    duration: 2.0
+  };
+
+  const tween = new Tween({
+    duration: state.duration,
+    ease: window['quadOut']
+  });
+
+  // init canvases
+  const graphCanvas = new GraphCanvas();
+
+  // get elements
+  const durationInput = Dom.query('.duration__input');
+  const durationRange = Dom.query('.duration__range');
+  const animationButton = Dom.query('.animation__button');
+  const copyText = Dom.query('.copy__text');
+  const copyButton = Dom.query('.copy__button');
+  const functionInput = Dom.query('.function__input');
+  const functionClearButton = Dom.query('.function__clear-button');
+  const operatorButtons = Dom.queryAll('.operator-button');
+  const easingButtons = Dom.queryAll('.easing-button');
+
+  // add events
+  durationInput.addEventListener('input', onDurationInput);
+  durationRange.addEventListener('input', onDurationRangeInput);
+  animationButton.addEventListener('click', onAnimationButtonClick);
+  copyButton.addEventListener('click', onCopyButtonClick);
+  functionInput.addEventListener('input', onFunctionInput);
+  functionClearButton.addEventListener('click', onFunctionClearButtonClick);
+  operatorButtons.forEach(button => {
+    button.addEventListener('click', onOperatorButtonClick);
+  })
+  easingButtons.forEach(button => {
+    button.addEventListener('click', onEasingButtonClick);
+  });
+  window.addEventListener('resize', onResize);
+  requestAnimationFrame(raf);
+
+  // define event handlers
+  function onDurationInput(e) {
+    const value = MathUtils.clamp(e.target.value, 0.1, 10);
+    if (isNaN(value)) return;
+    durationRange.value = value;
+  }
+
+  function onDurationRangeInput(e) {
+    const value = e.target.value;
+    durationInput.value = value;
+    durationInput.placeholder = value;
+    state.duration = value;
+  }
+
+  function onAnimationButtonClick() {
+    tween.to({
+      duration: state.duration
+    });
+  }
+
+  function onCopyButtonClick() {
+
+  }
+
+  function onFunctionInput(e) {
+    const value = e.target.value;
+
+    const func = evaluateFunction(value);
+    if (func instanceof Error) return;
+
+    functionInput.placeholder = value;
+    copyText.innerText += value + '\n\n';
+
+    tween.ease = func;
+  }
+
+  function onFunctionClearButtonClick() {
+    functionInput.value = '';
+  }
+
+  function onOperatorButtonClick(e) {
+    const text = e.currentTarget.textContent.trim();
+
+    if (functionInput.value === '') {
+      functionInput.value = functionInput.placeholder;
+    }
+    functionInput.value += text;
+  }
+
+  function onEasingButtonClick(e) {
+    const text = e.currentTarget.textContent.trim();
+
+    functionInput.value += text;
+    const value = functionInput.value;
+
+    const func = evaluateFunction(value);
+    if (func instanceof Error) return;
+
+    functionInput.placeholder = value;
+
+    tween.ease = func;
+  }
+
+  function onResize() {
+    graphCanvas.resize();
+  }
+
+  function raf(timestamp) {
+    tween.raf(timestamp);
+    
+    graphCanvas.draw(tween);
+
+    requestAnimationFrame(raf);
+  }
 }
 
-window.quadIn = (t) => {
-  return t * t;
-}
-
-window.quadOut = (t) => {
-  return 1 - (1 - t) * (1 - t);
-}
-
-window.quadInOut = (t) => {
-  return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) * 0.5;
-}
-
-window.cubicIn = (t) => {
-  return Math.pow(t, 3);
-}
-
-window.cubicOut = (t) => {
-  return 1 - Math.pow(1 - t, 3);
-}
-
-window.cubicInOut = (t) => {
-  return t < 0.5 ? 4 * Math.pow(t, 3) : 1 - Math.pow(-2 * t + 2, 3) * 0.5;
-}
-
-window.quartIn = (t) => {
-  return Math.pow(t, 4);
-}
-
-window.quartOut = (t) => {
-  return 1 - Math.pow(1 - t, 4);
-}
-
-window.quartInOut = (t) => {
-  return t < 0.5 ? 8 * Math.pow(t, 4) : 1 - Math.pow(-2 * t + 2, 4) * 0.5;
-}
-
-window.quintIn = (t) => {
-  return Math.pow(t, 5);
-}
-
-window.quintOut = (t) => {
-  return 1 - Math.pow(1 - t, 5);
-}
-
-window.quintInOut = (t) => {
-  return t < 0.5 ? 16 * Math.pow(t, 5) : 1 - Math.pow(-2 * t + 2, 5) * 0.5;
-}
-
-window.sineIn = (t) => {
-  return 1 - Math.cos((t * Math.PI) * 0.5);
-}
-
-window.sineOut = (t) => {
-  return Math.sin((t * Math.PI) * 0.5);
-}
-
-window.sineInOut = (t) => {
-  return -(Math.cos(Math.PI * t) - 1) * 0.5;
-}
-
-window.expoIn = (t) => {
-  return t === 0 ? 0 : Math.pow(2, 10 * t - 10);
-}
-
-window.expoOut = (t) => {
-  return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-}
-
-window.expoInOut = (t) => {
-  return t === 0
-    ? 0
-    : t === 1
-    ? 1
-    : t < 0.5 ? Math.pow(2, 20 * t - 10) * 0.5
-    : (2 - Math.pow(2, -20 * t + 10)) * 0.5;
-}
+main();
