@@ -35,6 +35,10 @@ button {
   cursor: pointer;
 }
 
+[role="button"] {
+  cursor: pointer;
+}
+
 .app {
   width: 100%;
 
@@ -269,6 +273,8 @@ button {
 
 .operator-button {
   @include desktop {
+    display: grid;
+    place-items: center;
     width: 84rem;
     height: 52rem;
     font-size: 25rem;
@@ -290,6 +296,8 @@ button {
 
 .easing-button {
   @include desktop {
+    display: grid;
+    place-items: center;
     width: 152rem;
     height: 52rem;
     background-color: $interface-color;
