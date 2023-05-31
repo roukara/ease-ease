@@ -1,9 +1,9 @@
-import { Dom } from "../utils/Dom";
-import { strokeLine } from "./strokeLine";
+import { strokeLine } from "../helpers/strokeLine";
+import { $ } from "./core/dom";
 
 export class GraphCanvas {
   constructor() {
-    this.el = Dom.query('.graph-canvas');
+    this.el = $('.graph-canvas');
 
     const dpr = Math.min(window.devicePixelRatio, 2);
 
@@ -84,9 +84,11 @@ export class GraphCanvas {
     ctx.restore();
   }
 
-  resize = (dpr) => {
-    this.el.width = this.el.clientWidth * dpr;
-    this.el.height = this.el.clientHeight * dpr;
-    this.size = Math.min(this.el.width, this.el.height);
+  handleResize = (dpr) => {
+    const { el } = this;
+
+    el.width = el.clientWidth * dpr;
+    el.height = el.clientHeight * dpr;
+    this.size = Math.min(el.width, el.height);
   }
 }

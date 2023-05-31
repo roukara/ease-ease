@@ -1,10 +1,14 @@
-import { Dom } from "./utils/Dom";
-import { MathUtils } from "./utils/MathUtils";
 import { Tween } from "./utils/Tween";
-import { evaluateFunction } from "./helpers/evaluateFunction";
 import { setEasingFunctions } from "./helpers/setEasingFunctions";
-import { GraphCanvas } from "./canvas/GraphCanvas";
-import { AnimationCanvas } from "./canvas/AnimationCanvas";
+import { GraphCanvas } from "./components/GraphCanvas";
+import { AnimationCanvas } from "./components/AnimationCanvas";
+import { DurationInput } from "./components/DurationInput";
+import { DurationRange } from "./components/DurationRange";
+import { AnimationButton } from "./components/AnimationButton";
+import { FunctionInput } from "./components/FunctionInput";
+import { FunctionClearButton } from "./components/FunctionClearButton";
+import { OperatorButtons } from "./components/OperatorButtons";
+import { EasingButtons } from "./components/EasingButtons";
 
 function main() {
   setEasingFunctions();
@@ -20,132 +24,64 @@ function main() {
     ease: window['quadOut']
   });
 
-  // init canvases
   const graphCanvas = new GraphCanvas();
-  const animationCavnas = new AnimationCanvas();
-
-  // get elements
-  const durationInput = Dom.query('.duration__input');
-  const durationRange = Dom.query('.duration__range');
-  const animationButton = Dom.query('.animation__button');
-  const copyText = Dom.query('.copy__text');
-  const copyButton = Dom.query('.copy__button');
-  const functionInput = Dom.query('.function__input');
-  const functionClearButton = Dom.query('.function__clear-button');
-  const operatorButtons = Dom.queryAll('.operator-button');
-  const easingButtons = Dom.queryAll('.easing-button');
-
-  // add events
-  durationInput.addEventListener('input', onDurationInput);
-  durationRange.addEventListener('input', onDurationRangeInput);
-  animationButton.addEventListener('click', onAnimationButtonClick);
-  copyButton.addEventListener('click', onCopyButtonClick);
-  functionInput.addEventListener('input', onFunctionInput);
-  functionClearButton.addEventListener('click', onFunctionClearButtonClick);
-  operatorButtons.forEach(button => {
-    button.addEventListener('click', onOperatorButtonClick);
-  })
-  easingButtons.forEach(button => {
-    button.addEventListener('click', onEasingButtonClick);
+  const animationCanvas = new AnimationCanvas();
+  const durationRange = new DurationRange();
+  const durationInput = new DurationInput({
+    min: durationRange.min, max: durationRange.max
   });
-  window.addEventListener('resize', onResize);
-  requestAnimationFrame(raf);
+  const animationButton = new AnimationButton();
+  const functionInput = new FunctionInput();
+  const functionClearButton = new FunctionClearButton();
+  const operatorButtons = new OperatorButtons();
+  const easingButtons = new EasingButtons();
 
-  // define event handlers
-  function onDurationInput(e) {
-    const value = MathUtils.clamp(e.target.value, 0.1, 10);
-    if (isNaN(value)) return;
-    durationRange.value = value;
-  }
-
-  function onDurationRangeInput(e) {
-    const value = e.target.value;
-    durationInput.value = value;
-    durationInput.placeholder = value;
+  durationInput.on('input', (value) => {
+    durationRange.handleInputText(value);
     state.duration = value;
-  }
+  });
 
-  function onAnimationButtonClick() {
+  durationRange.on('input', (value) => {
+    durationInput.handleInputRange(value);
+    state.duration = value;
+  });
+
+  animationButton.on('click', () => {
     tween.to({
       duration: state.duration
     });
-  }
+  });
 
-  function onCopyButtonClick() {
-
-  }
-
-  function onFunctionInput(e) {
-    const value = e.target.value;
-
-    const func = evaluateFunction(value);
-    if (func instanceof Error) return;
-
-    functionInput.placeholder = value;
-    copyText.innerText += value + '\n\n';
-
+  functionInput.on('input', (func) => {
     tween.ease = func;
-  }
+  });
 
-  function onFunctionClearButtonClick() {
-    functionInput.value = '';
-  }
+  functionClearButton.on('click', () => {
+    functionInput.handleClear();
+  });
 
-  function onOperatorButtonClick(e) {
-    const text = e.currentTarget.textContent.trim();
+  operatorButtons.on('click', (value) => {
+    functionInput.handleClickButton('operator', value);
+  });
 
-    if (functionInput.value === '') {
-      functionInput.value = functionInput.placeholder;
-    }
+  easingButtons.on('click', (value) => {
+    functionInput.handleClickButton('easing', value);
+  });
 
-    const selectPosition = functionInput.selectionStart;
-    
-    functionInput.value =
-      functionInput.value.substring(0, selectPosition) +
-      text +
-      functionInput.value.substring(selectPosition);
-    
-    const value = functionInput.value;
+  window.addEventListener('resize', handleResize);
+  requestAnimationFrame(raf);
 
-    const func = evaluateFunction(value);
-    if (func instanceof Error) return;
-
-    functionInput.placeholder = value;
-
-    tween.ease = func;
-  }
-
-  function onEasingButtonClick(e) {
-    const text = e.currentTarget.textContent.trim();
-
-    const selectPosition = functionInput.selectionStart;
-    
-    functionInput.value =
-      functionInput.value.substring(0, selectPosition) +
-      text +
-      functionInput.value.substring(selectPosition);
-
-    const value = functionInput.value;
-
-    const func = evaluateFunction(value);
-    if (func instanceof Error) return;
-
-    functionInput.placeholder = value;
-
-    tween.ease = func;
-  }
-
-  function onResize() {
+  function handleResize() {
     const dpr = Math.min(window.devicePixelRatio, 2);
-    graphCanvas.resize(dpr);
-    animationCavnas.resize(dpr);
+    graphCanvas.handleResize(dpr);
+    animationCanvas.handleResize(dpr);
   }
 
   function raf(timestamp) {
     tween.raf(timestamp);
     
     graphCanvas.draw(tween);
-    animationCavnas.draw(tween);
+    animationCanvas.draw(tween);
 
     requestAnimationFrame(raf);
   }

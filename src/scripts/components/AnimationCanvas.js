@@ -1,10 +1,10 @@
-import { Dom } from "../utils/Dom";
-import { fillArc } from "./fillArc";
-import { strokeLine } from "./strokeLine";
+import { fillArc } from "../helpers/fillArc";
+import { strokeLine } from "../helpers/strokeLine";
+import { $ } from "./core/dom";
 
 export class AnimationCanvas {
   constructor() {
-    this.el = Dom.query('.animation-canvas');
+    this.el = $('.animation-canvas');
 
     const dpr = Math.min(window.devicePixelRatio, 2);
 
@@ -41,9 +41,11 @@ export class AnimationCanvas {
     fillArc(ctx, cx, py, arcRadius);
   }
 
-  resize = (dpr) => {
-    this.el.width = this.el.clientWidth * dpr;
-    this.el.height = this.el.clientHeight * dpr;
-    this.arcRadius = this.el.width * 0.15;
+  handleResize = (dpr) => {
+    const { el } = this;
+
+    el.width = el.clientWidth * dpr;
+    el.height = el.clientHeight * dpr;
+    this.arcRadius = el.width * 0.15;
   }
 }
