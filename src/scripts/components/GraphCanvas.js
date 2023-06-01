@@ -32,6 +32,24 @@ export class GraphCanvas {
     ctx.save();
     ctx.translate(margin, margin);
 
+    // number
+    for (let i = 0; i <= 1; i += 0.25) {
+      const x = i * graphSize;
+      const y = graphSize - tween.ease(i) * graphSize;
+      
+      ctx.fillStyle = '#fff';
+
+      ctx.textAlign = 'center';
+      ctx.fillText(i, x, graphSize + 20);
+
+      ctx.textAlign = 'right';
+      ctx.fillText(Math.round(tween.ease(i) * 100) * 0.01, -10, y);
+
+      ctx.strokeStyle = '#666';
+      strokeLine(ctx, 0, y, x, y);
+      strokeLine(ctx, x, y, x, graphSize);
+    }
+
     // easing line
     ctx.strokeStyle = '#fff';
     strokePosition.x = 0;
@@ -51,24 +69,6 @@ export class GraphCanvas {
 
       strokePosition.x = x;
       strokePosition.y = y;
-    }
-
-    // number
-    for (let i = 0; i <= 1; i += 0.25) {
-      const x = i * graphSize;
-      const y = graphSize - tween.ease(i) * graphSize;
-      
-      ctx.fillStyle = '#fff';
-
-      ctx.textAlign = 'center';
-      ctx.fillText(i, x, graphSize + 20);
-
-      ctx.textAlign = 'right';
-      ctx.fillText(Math.round(tween.ease(i) * 100) * 0.01, -10, y);
-
-      ctx.strokeStyle = '#666';
-      strokeLine(ctx, 0, y, x, y);
-      strokeLine(ctx, x, y, x, graphSize);
     }
 
     const px = graphSize * tween.progress;
