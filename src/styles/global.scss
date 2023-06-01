@@ -179,30 +179,25 @@ button {
     padding: 20rem;
     background-color: $copy-color;
     border: 1px solid $border-color;
+    overflow: auto;
   }
+}
+
+.copy::-webkit-scrollbar {
+  width: 8rem;
+  height: 8rem;
+  background-color: $copy-color;
+}
+
+.copy::-webkit-scrollbar-thumb {
+  background-color: $animation-panel-color;
 }
 
 .copy__text {
   @include desktop {
     font-size: 16rem;
     line-height: 1.2;
-  }
-}
-
-.copy__button {
-  @include desktop {
-    position: absolute;
-    top: 16rem;
-    right: 16rem;
-    background-color: transparent;
-    border: none;
-  }
-}
-
-.copy__icon {
-  @include desktop {
-    width: 24rem;
-    height: 24rem;
+    white-space: pre;
   }
 }
 
@@ -235,6 +230,10 @@ button {
     background-color: $input-color;
     border: 1px solid $border-color;
   }
+}
+
+.function__input.is-invalid {
+  border: 1px solid $invalid-color;
 }
 
 .function__clear-button {
