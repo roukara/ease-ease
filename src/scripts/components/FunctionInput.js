@@ -4,6 +4,8 @@ export class FunctionInput extends Component {
   constructor() {
     super('.function__input');
 
+    this.default = this.el.placeholder;
+
     this.el.addEventListener('input', this.handleInput);
   }
 
@@ -11,15 +13,21 @@ export class FunctionInput extends Component {
     const value = e.target.value;
 
     const func = this.evaluateFunction(value);
-    if (func instanceof Error) return;
+    if (func instanceof Error) {
+      this.el.classList.add('is-invalid');
+      return;
+    }
+
+    this.el.classList.remove('is-invalid');
 
     this.el.placeholder = value;
 
-    this.emit('input', func);
+    this.emit('input', { func, inputValue: value });
   }
 
   handleClear = () => {
     this.el.value = '';
+    this.el.classList.remove('is-invalid');
   }
 
   handleClickButton = (type, value) => {
@@ -37,11 +45,16 @@ export class FunctionInput extends Component {
       el.value.substring(selectPosition);
 
     const func = this.evaluateFunction(el.value);
-    if (func instanceof Error) return;
+    if (func instanceof Error) {
+      this.el.classList.add('is-invalid');
+      return;
+    }
+
+    this.el.classList.remove('is-invalid');
 
     el.placeholder = el.value;
 
-    this.emit('input', func);
+    this.emit('input', { func, inputValue: el.value });
   }
 
   evaluateFunction = (value) => {

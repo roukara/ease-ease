@@ -7,8 +7,12 @@ export class EasingButtons extends Component {
 
     this.els = $$('.easing-button');
 
+    this.functionNameList = [];
+
     this.els.forEach(el => {
       el.addEventListener('click', this.handleClick);
+
+      this.functionNameList.push(el.textContent.trim());
     });
   }
 

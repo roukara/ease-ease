@@ -9,6 +9,7 @@ import { FunctionInput } from './components/FunctionInput';
 import { FunctionClearButton } from './components/FunctionClearButton';
 import { OperatorButtons } from './components/OperatorButtons';
 import { EasingButtons } from './components/EasingButtons';
+import { CopyText } from './components/CopyText';
 
 function main() {
   setEasingFunctions();
@@ -28,13 +29,18 @@ function main() {
   const animationCanvas = new AnimationCanvas();
   const durationRange = new DurationRange();
   const durationInput = new DurationInput({
-    min: durationRange.min, max: durationRange.max
+    min: durationRange.min,
+    max: durationRange.max
   });
   const animationButton = new AnimationButton();
   const functionInput = new FunctionInput();
   const functionClearButton = new FunctionClearButton();
   const operatorButtons = new OperatorButtons();
   const easingButtons = new EasingButtons();
+  const copyText = new CopyText({
+    defaultFunction: functionInput.default,
+    functionNameList: easingButtons.functionNameList
+  });
 
   durationInput.on('input', (value) => {
     durationRange.handleInputText(value);
@@ -52,8 +58,9 @@ function main() {
     });
   });
 
-  functionInput.on('input', (func) => {
+  functionInput.on('input', ({ func, inputValue }) => {
     tween.ease = func;
+    copyText.handleInputFunction(inputValue);
   });
 
   functionClearButton.on('click', () => {
