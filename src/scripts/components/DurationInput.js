@@ -1,5 +1,5 @@
-import { Component } from "./core/Component";
-import { MathUtils } from "../utils/MathUtils";
+import { Component } from './core/Component';
+import { MathUtils } from '../utils/MathUtils';
 
 export class DurationInput extends Component {
   constructor({ min, max }) {

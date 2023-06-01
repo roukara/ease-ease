@@ -1,5 +1,5 @@
-import { Component } from "./core/Component";
-import { $$ } from "./core/dom";
+import { Component } from './core/Component';
+import { $$ } from './core/dom';
 
 export class OperatorButtons extends Component {
   constructor() {

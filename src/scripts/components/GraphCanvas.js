@@ -1,5 +1,5 @@
-import { strokeLine } from "../helpers/strokeLine";
-import { $ } from "./core/dom";
+import { strokeLine } from '../helpers/strokeLine';
+import { $ } from './core/dom';
 
 export class GraphCanvas {
   constructor() {

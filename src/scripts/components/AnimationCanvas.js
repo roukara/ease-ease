@@ -1,6 +1,6 @@
-import { fillArc } from "../helpers/fillArc";
-import { strokeLine } from "../helpers/strokeLine";
-import { $ } from "./core/dom";
+import { fillArc } from '../helpers/fillArc';
+import { strokeLine } from '../helpers/strokeLine';
+import { $ } from './core/dom';
 
 export class AnimationCanvas {
   constructor() {

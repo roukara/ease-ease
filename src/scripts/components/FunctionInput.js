@@ -1,4 +1,4 @@
-import { Component } from "./core/Component";
+import { Component } from './core/Component';
 
 export class FunctionInput extends Component {
   constructor() {

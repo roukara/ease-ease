@@ -1,14 +1,14 @@
-import { Tween } from "./utils/Tween";
-import { setEasingFunctions } from "./helpers/setEasingFunctions";
-import { GraphCanvas } from "./components/GraphCanvas";
-import { AnimationCanvas } from "./components/AnimationCanvas";
-import { DurationInput } from "./components/DurationInput";
-import { DurationRange } from "./components/DurationRange";
-import { AnimationButton } from "./components/AnimationButton";
-import { FunctionInput } from "./components/FunctionInput";
-import { FunctionClearButton } from "./components/FunctionClearButton";
-import { OperatorButtons } from "./components/OperatorButtons";
-import { EasingButtons } from "./components/EasingButtons";
+import { Tween } from './utils/Tween';
+import { setEasingFunctions } from './helpers/setEasingFunctions';
+import { GraphCanvas } from './components/GraphCanvas';
+import { AnimationCanvas } from './components/AnimationCanvas';
+import { DurationInput } from './components/DurationInput';
+import { DurationRange } from './components/DurationRange';
+import { AnimationButton } from './components/AnimationButton';
+import { FunctionInput } from './components/FunctionInput';
+import { FunctionClearButton } from './components/FunctionClearButton';
+import { OperatorButtons } from './components/OperatorButtons';
+import { EasingButtons } from './components/EasingButtons';
 
 function main() {
   setEasingFunctions();

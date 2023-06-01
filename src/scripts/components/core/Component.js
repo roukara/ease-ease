@@ -1,4 +1,4 @@
-import { $ } from "./dom";
+import { $ } from './dom';
 
 export class Component {
   constructor(selector) {
