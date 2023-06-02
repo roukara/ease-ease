@@ -46,12 +46,14 @@ export class GraphCanvas {
       ctx.fillText(Math.round(tween.ease(i) * 100) * 0.01, -10, y);
 
       ctx.strokeStyle = '#666';
+      ctx.lineWidth = 1
       strokeLine(ctx, 0, y, x, y);
       strokeLine(ctx, x, y, x, graphSize);
     }
 
     // easing line
     ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
     strokePosition.x = 0;
     strokePosition.y = 0;
 
