@@ -16,13 +16,14 @@ function main() {
   
   const state = {
     duration: 2.0,
-    delay: 0.2
+    delay: 0.2,
+    default: 'quadOut'
   };
 
   const tween = new Tween({
     duration: state.duration,
     delay: state.delay,
-    ease: window['quadOut']
+    ease: window[state.default]
   });
 
   const graphCanvas = new GraphCanvas();
@@ -33,12 +34,12 @@ function main() {
     max: durationRange.max
   });
   const animationButton = new AnimationButton();
-  const functionInput = new FunctionInput();
+  const functionInput = new FunctionInput(state.default);
   const functionClearButton = new FunctionClearButton();
   const operatorButtons = new OperatorButtons();
   const easingButtons = new EasingButtons();
   const copyText = new CopyText({
-    defaultFunction: functionInput.default,
+    defaultFunction: state.default,
     functionNameList: easingButtons.functionNameList
   });
 

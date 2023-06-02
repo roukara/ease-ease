@@ -1,10 +1,10 @@
 import { Component } from './core/Component';
 
 export class FunctionInput extends Component {
-  constructor() {
+  constructor(defaultFunction) {
     super('.function__input');
 
-    this.default = this.el.placeholder;
+    this.el.placeholder = `${defaultFunction}(t)`;
 
     this.el.addEventListener('input', this.handleInput);
   }

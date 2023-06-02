@@ -6,7 +6,7 @@ export class CopyText extends Component {
 
     this.functionNameList = functionNameList;
 
-    this.el.innerText = this.stringifyFunction(defaultFunction.slice(0, -3));
+    this.el.innerText = this.stringifyFunction(defaultFunction);
   }
 
   handleInputFunction = (value) => {
