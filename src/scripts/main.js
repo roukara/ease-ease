@@ -2,15 +2,10 @@ import { Tween } from './utils/Tween';
 import { defineEasingFunctions } from './helpers/defineEasingFunctions';
 import { GraphCanvas } from './components/GraphCanvas';
 import { AnimationCanvas } from './components/AnimationCanvas';
-import { DurationInput } from './components/DurationInput';
-import { DurationRange } from './components/DurationRange';
 import { AnimationButton } from './components/AnimationButton';
-import { FunctionInput } from './components/FunctionInput';
-import { FunctionClearButton } from './components/FunctionClearButton';
-import { OperatorButtons } from './components/OperatorButtons';
-import { EasingButtons } from './components/EasingButtons';
-import { CopyText } from './components/CopyText';
-import { CopyButton } from './components/CopyButton';
+import { DurationController } from './components/DurationController';
+import { FunctionContainer } from './components/FunctionContainer';
+import { CopyField } from './components/CopyField';
 
 function main() {
   defineEasingFunctions();
@@ -29,29 +24,15 @@ function main() {
 
   const graphCanvas = new GraphCanvas();
   const animationCanvas = new AnimationCanvas();
-  const durationRange = new DurationRange();
-  const durationInput = new DurationInput({
-    min: durationRange.min,
-    max: durationRange.max
-  });
+  const durationController = new DurationController();
   const animationButton = new AnimationButton();
-  const functionInput = new FunctionInput(state.default);
-  const functionClearButton = new FunctionClearButton();
-  const operatorButtons = new OperatorButtons();
-  const easingButtons = new EasingButtons();
-  const copyText = new CopyText({
+  const functionContainer = new FunctionContainer(state.default);
+  const copyField = new CopyField({
     defaultFunction: state.default,
-    functionNameList: easingButtons.functionNameList
-  });
-  const copyButton = new CopyButton();
-
-  durationInput.on('input', (value) => {
-    durationRange.handleInputText(value);
-    state.duration = value;
+    easingList: functionContainer.easingList
   });
 
-  durationRange.on('input', (value) => {
-    durationInput.handleInputRange(value);
+  durationController.on('input', (value) => {
     state.duration = value;
   });
 
@@ -61,25 +42,9 @@ function main() {
     });
   });
 
-  functionInput.on('input', ({ func, inputValue }) => {
+  functionContainer.on('input', ({ func, inputValue }) => {
     tween.ease = func;
-    copyText.handleInputFunction(inputValue);
-  });
-
-  functionClearButton.on('click', () => {
-    functionInput.handleClear();
-  });
-
-  operatorButtons.on('click', (value) => {
-    functionInput.handleClickButton('operator', value);
-  });
-
-  easingButtons.on('click', (value) => {
-    functionInput.handleClickButton('easing', value);
-  });
-
-  copyButton.on('click', () => {
-    copyText.handleClickCopy();
+    copyField.handleInput(inputValue);
   });
 
   window.addEventListener('resize', handleResize);

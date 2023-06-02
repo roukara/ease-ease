@@ -13,7 +13,7 @@ export class AnimationCanvas {
 
     this.ctx = this.el.getContext('2d');
 
-    this.arcRadius = this.el.width * 0.15;
+    this.arcRadius = this.el.width * 0.1;
 
     this.margin = 50;
   }
