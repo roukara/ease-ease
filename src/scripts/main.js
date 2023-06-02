@@ -10,6 +10,7 @@ import { FunctionClearButton } from './components/FunctionClearButton';
 import { OperatorButtons } from './components/OperatorButtons';
 import { EasingButtons } from './components/EasingButtons';
 import { CopyText } from './components/CopyText';
+import { CopyButton } from './components/CopyButton';
 
 function main() {
   setEasingFunctions();
@@ -42,6 +43,7 @@ function main() {
     defaultFunction: state.default,
     functionNameList: easingButtons.functionNameList
   });
+  const copyButton = new CopyButton();
 
   durationInput.on('input', (value) => {
     durationRange.handleInputText(value);
@@ -74,6 +76,10 @@ function main() {
 
   easingButtons.on('click', (value) => {
     functionInput.handleClickButton('easing', value);
+  });
+
+  copyButton.on('click', () => {
+    copyText.handleClickCopy();
   });
 
   window.addEventListener('resize', handleResize);
