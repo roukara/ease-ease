@@ -11,18 +11,14 @@ export class CopyText extends Component {
 
   handleInputFunction = (value) => {
     let text = '';
-    let depsCount = 0;
 
     this.functionNameList.forEach(functionName => {
       if (value.includes(functionName.replace('t)', ''))) {
         text += this.stringifyFunction(functionName.replace('(t)', ''));
-        depsCount++;
       }
     });
 
-    if (depsCount > 1) {
-      text += 'function ease(t) {\n\t' + 'return ' + value + '\n}';
-    }
+    text += 'function ease(t) {\n\t' + 'return ' + value + '\n}';
 
     this.el.innerText = text;
   }
