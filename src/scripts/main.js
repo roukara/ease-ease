@@ -1,5 +1,5 @@
 import { Tween } from './utils/Tween';
-import { setEasingFunctions } from './helpers/setEasingFunctions';
+import { defineEasingFunctions } from './helpers/defineEasingFunctions';
 import { GraphCanvas } from './components/GraphCanvas';
 import { AnimationCanvas } from './components/AnimationCanvas';
 import { DurationInput } from './components/DurationInput';
@@ -13,7 +13,7 @@ import { CopyText } from './components/CopyText';
 import { CopyButton } from './components/CopyButton';
 
 function main() {
-  setEasingFunctions();
+  defineEasingFunctions();
   
   const state = {
     duration: 2.0,

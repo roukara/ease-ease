@@ -1,4 +1,4 @@
-export function setEasingFunctions() {
+export function defineEasingFunctions() {
   window.quadIn = (t) => {
     return t * t;
   }
