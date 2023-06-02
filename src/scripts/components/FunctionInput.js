@@ -12,10 +12,10 @@ export class FunctionInput extends Component {
     this.el.addEventListener('click', this.handleClick);
   }
 
-  handleInput = (e) => {
-    const value = e.target.value;
+  handleInput = () => {
+    const value = this.el.value;
 
-    this.selectPosition = value.length;
+    this.selectPosition = this.el.selectionStart;
 
     const func = this.evaluateFunction(value);
     if (func instanceof Error) {
@@ -52,7 +52,7 @@ export class FunctionInput extends Component {
       value +
       el.value.substring(selectPosition);
       
-    this.selectPosition = el.value.length;
+    this.selectPosition += value.length;
 
     const func = this.evaluateFunction(el.value);
     if (func instanceof Error) {
