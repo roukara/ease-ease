@@ -25,7 +25,6 @@ export class Tween {
     this.ease = ease;
 
     this.progress = 0;
-
     this.time.now = 0;
     this.time.last = 0;
 
