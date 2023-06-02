@@ -6,11 +6,16 @@ export class FunctionInput extends Component {
 
     this.el.placeholder = `${defaultFunction}(t)`;
 
+    this.selectPosition = 0;
+
     this.el.addEventListener('input', this.handleInput);
+    this.el.addEventListener('click', this.handleClick);
   }
 
   handleInput = (e) => {
     const value = e.target.value;
+
+    this.selectPosition = value.length;
 
     const func = this.evaluateFunction(value);
     if (func instanceof Error) {
@@ -25,24 +30,29 @@ export class FunctionInput extends Component {
     this.emit('input', { func, inputValue: value });
   }
 
+  handleClick = () => {
+    this.selectPosition = this.el.selectionStart;
+  }
+
   handleClear = () => {
     this.el.value = '';
+    this.selectPosition = 0;
     this.el.classList.remove('is-invalid');
   }
 
   handleClickButton = (type, value) => {
-    const { el } = this;
+    const { el, selectPosition } = this;
 
     if (type === 'operator' && el.value === '') {
       el.value = el.placeholder;
     }
-
-    const selectPosition = el.selectionStart;
     
     el.value =
       el.value.substring(0, selectPosition) +
       value +
       el.value.substring(selectPosition);
+      
+    this.selectPosition = el.value.length;
 
     const func = this.evaluateFunction(el.value);
     if (func instanceof Error) {
