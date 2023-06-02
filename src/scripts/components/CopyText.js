@@ -36,4 +36,8 @@ export class CopyText extends Component {
 
     return 'function ' + functionName + '(t) {\n\t' + functionBody + '\n}\n\n';
   }
+
+  handleClickCopy = () => {
+    navigator.clipboard.writeText(this.el.innerText);
+  }
 }
