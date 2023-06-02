@@ -18,7 +18,7 @@ function main() {
   const state = {
     duration: 2.0,
     delay: 0.2,
-    default: 'quadOut'
+    default: 'quadIn'
   };
 
   const tween = new Tween({
