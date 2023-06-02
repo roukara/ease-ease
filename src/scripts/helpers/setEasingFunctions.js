@@ -1,8 +1,4 @@
 export function setEasingFunctions() {
-  window.linear = (t) => {
-    return t;
-  }
-  
   window.quadIn = (t) => {
     return t * t;
   }
@@ -51,18 +47,6 @@ export function setEasingFunctions() {
     return t < 0.5 ? 16 * Math.pow(t, 5) : 1 - Math.pow(-2 * t + 2, 5) * 0.5;
   }
   
-  window.sineIn = (t) => {
-    return 1 - Math.cos((t * Math.PI) * 0.5);
-  }
-  
-  window.sineOut = (t) => {
-    return Math.sin((t * Math.PI) * 0.5);
-  }
-  
-  window.sineInOut = (t) => {
-    return -(Math.cos(Math.PI * t) - 1) * 0.5;
-  }
-  
   window.expoIn = (t) => {
     return t === 0 ? 0 : Math.pow(2, 10 * t - 10);
   }
@@ -78,5 +62,31 @@ export function setEasingFunctions() {
       ? 1
       : t < 0.5 ? Math.pow(2, 20 * t - 10) * 0.5
       : (2 - Math.pow(2, -20 * t + 10)) * 0.5;
+  }
+
+  window.sineIn = (t) => {
+    return 1 - Math.cos((t * Math.PI) * 0.5);
+  }
+  
+  window.sineOut = (t) => {
+    return Math.sin((t * Math.PI) * 0.5);
+  }
+  
+  window.sineInOut = (t) => {
+    return -(Math.cos(Math.PI * t) - 1) * 0.5;
+  }
+
+  window.circIn = (t) => {
+    return 1 - Math.sqrt(1 - Math.pow(t, 2));
+  }
+
+  window.circOut = (t) => {
+    return Math.sqrt(1 - Math.pow(t - 1, 2));
+  }
+
+  window.circInOut = (t) => {
+    return t < 0.5
+      ? (1 - Math.sqrt(1 - Math.pow(2 * t, 2))) * 0.5
+      : (Math.sqrt(1 - Math.pow(-2 * t + 2, 2)) + 1) * 0.5;
   }
 }
