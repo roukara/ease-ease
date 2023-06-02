@@ -33,10 +33,11 @@ a {
 
 button {
   cursor: pointer;
+  user-select: none;
 }
 
-[role="button"] {
-  cursor: pointer;
+.button:active {
+  transform: scale(0.95);
 }
 
 .app {
@@ -155,8 +156,34 @@ button {
     display: block;
     margin-top: 10rem;
     width: 100%;
-    height: 20rem;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    background-color: $range-color;
+    border: 1px solid $border-color;
+    height: 10rem;
   }
+}
+
+.duration__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20rem;
+  width: 20rem;
+  background-color: $range-color;
+  border: 1px solid $border-color;
+  border-radius: 50%;
+  transform: translateY(-1rem);
+}
+
+.duration__range::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20rem;
+  width: 20rem;
+  background-color: $range-color;
+  border: 1px solid $border-color;
+  border-radius: 50%;
 }
 
 .animation__button {
@@ -176,20 +203,27 @@ button {
     width: 316rem;
     height: 160rem;
     margin-left: 16rem;
-    padding: 20rem;
     background-color: $copy-color;
     border: 1px solid $border-color;
+  }
+}
+
+.copy__text-wrapper {
+  @include desktop {
+    width: 100%;
+    height: 100%;
+    padding: 20rem;
     overflow: auto;
   }
 }
 
-.copy::-webkit-scrollbar {
+.copy__text-wrapper::-webkit-scrollbar {
   width: 8rem;
   height: 8rem;
   background-color: $copy-color;
 }
 
-.copy::-webkit-scrollbar-thumb {
+.copy__text-wrapper::-webkit-scrollbar-thumb {
   background-color: $animation-panel-color;
 }
 
@@ -198,6 +232,16 @@ button {
     font-size: 16rem;
     line-height: 1.2;
     white-space: pre;
+  }
+}
+
+.copy__button {
+  @include desktop {
+    position: absolute;
+    top: 8rem;
+    right: 16rem;
+    background-color: transparent;
+    border: none;
   }
 }
 
