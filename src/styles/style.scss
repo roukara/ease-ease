@@ -374,8 +374,8 @@ button {
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem 4rem;
-  margin-top: 3rem;
+  gap: 4rem;
+  margin-top: 4rem;
   
   @include desktop {
     order: 1;
@@ -388,7 +388,7 @@ button {
 .function__operator-button {
   display: grid;
   place-items: center;
-  font-size: 16rem;
+  font-size: 14rem;
   padding: 12rem 0;
   background-color: $color-button;
   border: 1px solid $color-border;
@@ -406,7 +406,7 @@ button {
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem 4rem;
+  gap: 4rem;
   
   @include desktop {
     order: 2;
@@ -418,7 +418,7 @@ button {
 .function__easing-button {
   display: grid;
   place-items: center;
-  font-size: 16rem;
+  font-size: 14rem;
   padding: 12rem 0;
   background-color: $color-button;
   border: 1px solid $color-border;
