@@ -19,8 +19,8 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1;
-  background-color: $background-color;
-  color: $text-color
+  background-color: $color-background;
+  color: $color-label;
 }
 
 h1, h2, h3, h4, h5 {
@@ -96,7 +96,7 @@ button {
   @include desktop {
     width: 720rem;
     height: 720rem;
-    background-color: $canvas-color;
+    background-color: $color-canvas;
   }
 }
 
@@ -105,7 +105,7 @@ button {
     width: 240rem;
     height: 720rem;
     margin-left: 36rem;
-    background-color: $canvas-color;
+    background-color: $color-canvas;
   }
 }
 
@@ -129,8 +129,7 @@ button {
     width: 368rem;
     height: 160rem;
     padding: 16rem;
-    background-color: $animation-panel-color;
-    border: 1px solid $border-color;
+    background-color: $color-animation-container;
   }
 }
 
@@ -145,8 +144,8 @@ button {
     padding: 4rem 8rem;
     font-size: 20rem;
     text-align: center;
-    background-color: $interface-color;
-    border: 1px solid $border-color;
+    background-color: $color-input;
+    border: 1px solid $color-border;
     margin-left: 8rem;
   }
 }
@@ -159,8 +158,8 @@ button {
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
-    background-color: $range-color;
-    border: 1px solid $border-color;
+    background-color: $color-range;
+    border: 1px solid $color-border;
     height: 10rem;
   }
 }
@@ -170,8 +169,7 @@ button {
   appearance: none;
   height: 20rem;
   width: 20rem;
-  background-color: $range-color;
-  border: 1px solid $border-color;
+  background-color: $color-range;
   border-radius: 50%;
   transform: translateY(-1rem);
 }
@@ -181,8 +179,7 @@ button {
   appearance: none;
   height: 20rem;
   width: 20rem;
-  background-color: $range-color;
-  border: 1px solid $border-color;
+  background-color: $color-range;
   border-radius: 50%;
 }
 
@@ -191,9 +188,9 @@ button {
     font-size: 25rem;
     width: 100%;
     padding: 8rem 0;
-    background-color: $interface-color;
-    color: $text-color;
-    border: 1px solid $border-color;
+    background-color: $color-button;
+    color: $color-button-text;
+    border: 1px solid $color-border;
   }
 }
 
@@ -203,8 +200,8 @@ button {
     width: 316rem;
     height: 160rem;
     margin-left: 16rem;
-    background-color: $copy-color;
-    border: 1px solid $border-color;
+    background-color: $color-copy-field;
+    border: 1px solid $color-border;
   }
 }
 
@@ -220,11 +217,11 @@ button {
 .copy__text-wrapper::-webkit-scrollbar {
   width: 8rem;
   height: 8rem;
-  background-color: $copy-color;
+  background-color: $color-copy-field
 }
 
 .copy__text-wrapper::-webkit-scrollbar-thumb {
-  background-color: $animation-panel-color;
+  background-color: $color-background;
 }
 
 .copy__text {
@@ -232,6 +229,7 @@ button {
     font-size: 16rem;
     line-height: 1.2;
     white-space: pre;
+    color: $color-black;
   }
 }
 
@@ -280,13 +278,14 @@ button {
     width: 100%;
     padding: 12rem 8rem;
     font-size: 25rem;
-    background-color: $input-color;
-    border: 1px solid $border-color;
+    background-color: $color-input;
+    border: 1px solid $color-border;
+    color: $color-black;
   }
 }
 
 .function__input.is-invalid {
-  border: 1px solid $invalid-color;
+  border: 1px solid $color-error;
 }
 
 .function__clear-button {
@@ -332,9 +331,9 @@ button {
     width: 84rem;
     height: 52rem;
     font-size: 25rem;
-    background-color: $interface-color;
-    border: 1px solid $border-color;
-    color: $text-color;
+    background-color: $color-button;
+    border: 1px solid $color-border;
+    color: $color-button-text;
   }
 }
 
@@ -354,9 +353,9 @@ button {
     place-items: center;
     width: 152rem;
     height: 52rem;
-    background-color: $interface-color;
-    border: 1px solid $border-color;
+    background-color: $color-button;
+    border: 1px solid $color-border;
     font-size: 20rem;
-    color: $text-color;
+    color: $color-button-text
   }
 }
