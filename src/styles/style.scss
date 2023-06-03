@@ -13,7 +13,11 @@ html, body {
 }
 
 html {
-  font-size: calc(100vw / 1920);
+  font-size: calc(100vw / 375);
+
+  @include desktop {
+    font-size: calc(100vw / 1920);
+  }
 }
 
 body {
@@ -42,6 +46,7 @@ button {
 
 .app {
   width: 100%;
+  padding: 40rem 20rem;
 
   @include desktop {
     padding: 40rem 80rem;
@@ -50,15 +55,15 @@ button {
 
 .header {
   width: 100%;
-
-  @include desktop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header__title {
+  font-size: 39rem;
+  transform: translateX(-2rem);
+  
   @include desktop {
     font-size: 49rem;
     transform: translateX(-4rem);
@@ -66,51 +71,65 @@ button {
 }
 
 .header__link {
+  width: 30rem;
+  height: 30rem;
+  transform: translateX(2rem);
+  
   @include desktop {
+    width: 40rem;
+    height: 40rem;
     transform: translateX(4rem);
   }
 }
 
 .header__link-icon {
-  @include desktop {
-    width: 40rem;
-    height: 40rem;
-  }
+  width: 100%;
+  height: 100%;
 }
 
 .container {
+  width: 100%;
+  margin-top: 40rem;
+
   @include desktop {
-    width: 100%;
     margin-top: calc(var(--vh, 1vh) * (80 / 9.69));
     display: flex;
   }
 }
 
 .canvas-container {
-  @include desktop {
-    display: flex;
-  }
+  display: flex;
 }
 
 .graph-canvas {
+  width: 240rem;
+  height: 240rem;
+  background-color: $color-canvas;
+
   @include desktop {
     width: 720rem;
     height: 720rem;
-    background-color: $color-canvas;
   }
 }
 
 .animation-canvas {
+  width: 80rem;
+  height: 240rem;
+  margin-left: 15rem;
+  background-color: $color-canvas;
+  
   @include desktop {
     width: 240rem;
     height: 720rem;
     margin-left: 36rem;
-    background-color: $color-canvas;
   }
 }
 
 .interface-container {
+  margin-top: 20rem;
+
   @include desktop {
+    margin-top: 0;
     margin-left: 64rem;
   }
 }
@@ -122,46 +141,47 @@ button {
 }
 
 .animation {
+  width: 100%;
+  padding: 16rem;
+  background-color: $color-animation-container;
+  
   @include desktop {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 368rem;
     height: 160rem;
-    padding: 16rem;
-    background-color: $color-animation-container;
   }
 }
 
 .duration__label {
+  font-size: 20rem;
+  color: $color-animation-label;
+
   @include desktop {
     font-size: 25rem;
   }
 }
 
 .duration__input {
-  @include desktop {
-    padding: 4rem 8rem;
-    font-size: 20rem;
-    text-align: center;
-    background-color: $color-input;
-    border: 1px solid $color-border;
-    margin-left: 8rem;
-  }
+  font-size: 20rem;
+  padding: 4rem 8rem;
+  text-align: center;
+  background-color: $color-input;
+  border: 1px solid $color-border;
+  margin-left: 8rem;
 }
 
 .duration__range {
-  @include desktop {
-    display: block;
-    margin-top: 10rem;
-    width: 100%;
-    -webkit-appearance: none;
-    appearance: none;
-    cursor: pointer;
-    background-color: $color-range;
-    border: 1px solid $color-border;
-    height: 10rem;
-  }
+  width: 100%;
+  display: block;
+  margin-top: 10rem;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  background-color: $color-range;
+  border: 1px solid $color-border;
+  height: 10rem;
 }
 
 .duration__range::-webkit-slider-thumb {
@@ -184,18 +204,25 @@ button {
 }
 
 .animation__button {
+  font-size: 20rem;
+  width: 100%;
+  padding: 8rem 0;
+  margin-top: 16rem;
+  background-color: $color-button;
+  color: $color-button-text;
+  border: 1px solid $color-border;
+  
   @include desktop {
+    margin-top: 0;
     font-size: 25rem;
-    width: 100%;
-    padding: 8rem 0;
-    background-color: $color-button;
-    color: $color-button-text;
-    border: 1px solid $color-border;
   }
 }
 
 .copy {
+  display: none;
+
   @include desktop {
+    display: block;
     position: relative;
     width: 316rem;
     height: 160rem;
@@ -252,35 +279,56 @@ button {
   }
 }
 
+.copy__tooltip {
+  @include desktop {
+    font-size: 12rem;
+    color: $color-black;
+    visibility: hidden;
+  }
+}
+
+.copy__tooltip.is-show {
+  visibility: visible;
+}
+
 .function {
+  width: 100%;
+  margin-top: 20rem;
+  
   @include desktop {
     margin-top: 40rem;
-    width: 100%;
   }
 }
 
 .function__label {
+  font-size: 20rem;
+  
   @include desktop {
     font-size: 25rem;
   }
 }
 
 .function__input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 8rem;
+
   @include desktop {
-    position: relative;
-    width: 100%;
     margin-top: 10rem;
   }
 }
 
 .function__input {
+  width: 100%;
+  padding: 8rem 4rem;
+  font-size: 20rem;
+  background-color: $color-input;
+  border: 1px solid $color-border;
+  color: $color-black;
+
   @include desktop {
-    width: 100%;
     padding: 12rem 8rem;
     font-size: 25rem;
-    background-color: $color-input;
-    border: 1px solid $color-border;
-    color: $color-black;
   }
 }
 
@@ -289,73 +337,97 @@ button {
 }
 
 .function__clear-button {
+  position: absolute;
+  top: 50%;
+  right: 4rem;
+  width: 24rem;
+  height: 24rem;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+
   @include desktop {
-    position: absolute;
-    top: 50%;
     right: 10rem;
-    transform: translateY(-50%);
     width: 32rem;
     height: 32rem;
-    background-color: transparent;
-    border: none;
   }
 }
 
 .function__clear-icon {
-  @include desktop {
-    width: 100%;
-    height: 100%;
-  }
+  width: 100%;
+  height: 100%;
 }
 
 .function__button-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rem;
+  
   @include desktop {
-    display: flex;
+    flex-direction: row;
     margin-top: 30rem;
   }
 }
 
 .function__operator-button-wrapper {
+  order: 2;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem 4rem;
+  margin-top: 3rem;
+  
   @include desktop {
-    height: fit-content;
-    display: grid;
+    order: 1;
+    margin-top: 0;
     grid-template-columns: repeat(2, 1fr);
     gap: 10rem 12rem;
   }
 }
 
 .function__operator-button {
+  display: grid;
+  place-items: center;
+  font-size: 16rem;
+  padding: 12rem 0;
+  background-color: $color-button;
+  border: 1px solid $color-border;
+  color: $color-button-text;
+  
   @include desktop {
-    display: grid;
-    place-items: center;
     width: 84rem;
     height: 52rem;
     font-size: 25rem;
-    background-color: $color-button;
-    border: 1px solid $color-border;
-    color: $color-button-text;
   }
 }
 
 .function__easing-button-wrapper {
+  order: 1;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem 4rem;
+  
   @include desktop {
+    order: 2;
     margin-left: 40rem;
-    height: fit-content;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 10rem 12rem;
   }
 }
 
 .function__easing-button {
+  display: grid;
+  place-items: center;
+  font-size: 16rem;
+  padding: 12rem 0;
+  background-color: $color-button;
+  border: 1px solid $color-border;
+  color: $color-button-text;
+
   @include desktop {
-    display: grid;
-    place-items: center;
     width: 152rem;
     height: 52rem;
-    background-color: $color-button;
-    border: 1px solid $color-border;
+    padding: 0;
     font-size: 20rem;
-    color: $color-button-text
   }
 }
