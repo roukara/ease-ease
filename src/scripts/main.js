@@ -47,6 +47,8 @@ function main() {
     copyField.handleInput(inputValue);
   });
 
+  handleResize();
+
   window.addEventListener('resize', handleResize);
   requestAnimationFrame(raf);
 
