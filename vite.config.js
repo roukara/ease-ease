@@ -6,6 +6,8 @@ export default defineConfig({
     host: true
   },
   build: {
+    minify: false,
+    cssMinify: true,
     rollupOptions: {
       output: {
         entryFileNames: 'assets/js/[name][hash].js',
