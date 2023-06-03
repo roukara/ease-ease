@@ -13,6 +13,8 @@ export class CopyField extends Component {
 
     this.text.innerText = this.stringifyFunction(defaultFunction);
 
+    this.el.addEventListener('mousemove', this.handleEnter);
+    this.el.addEventListener('mouseleave', this.handleLeave);
     this.button.addEventListener('click', this.handleCopy);
   }
 
@@ -31,7 +33,18 @@ export class CopyField extends Component {
   }
 
   handleCopy = () => {
-    navigator.clipboard.writeText(this.text.innerText);
+    navigator.clipboard.writeText(this.text.innerText).then(() => {
+      this.tooltip.textContent = 'copied';
+    });
+  }
+
+  handleEnter = () => {
+    this.tooltip.classList.add('is-show');
+  }
+  
+  handleLeave = () => {
+    this.tooltip.textContent = 'copy';
+    this.tooltip.classList.remove('is-show');
   }
 
   stringifyFunction(functionName) {
